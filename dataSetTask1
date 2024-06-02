@@ -1,0 +1,21 @@
+import pandas as pd
+
+# Simulate the CSV data
+data = pd.DataFrame({
+    'LicenseType': ['Type1', 'Type2', 'Type3', 'Type4', 'Type5', 'Type6', 'Type7'],
+    'Breed': ['Golden Retriever', 'german shepherd ', ' Poodle', 'poodle', 'Bulldog', 'bulldog', '  Labradoodle '],
+    'Color': ['Color1', 'Color2', 'Color3', 'Color4', 'Color5', 'Color6', 'Color7'],
+    
+})
+
+# Extract the 'Breed' column
+breeds = data['Breed']
+
+# Normalize the breed names
+normalized_breeds = breeds.str.replace(r'\s+', '', regex=True).str.lower()
+
+# Eliminate duplicates
+unique_breeds = normalized_breeds.drop_duplicates().reset_index(drop=True)
+
+# Display the unique normalized breeds
+unique_breeds
